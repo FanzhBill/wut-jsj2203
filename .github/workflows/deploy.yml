@@ -25,6 +25,8 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - name: Configure Pages
+        uses: actions/configure-pages@v6
       - name: Install dependencies
         run: npm ci
       - name: Test
@@ -34,7 +36,7 @@ jobs:
         env:
           VITE_BASE: /${{ github.event.repository.name }}/
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: dist
   deploy:
@@ -46,4 +48,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
